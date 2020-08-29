@@ -1,7 +1,11 @@
 
+import { requestOpponent } from './SocketIO.js';
+
+//
+
 function startMultiplayer() {
 
-	console.log('start multiplayer mode')
+	requestOpponent();
 
 }
 
