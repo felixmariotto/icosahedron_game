@@ -5,17 +5,41 @@ import Scene from './core/Scene.js';
 
 //
 
-const planetMaterial = new THREE.MeshNormalMaterial({
+const icoMaterial = new THREE.MeshNormalMaterial({
 	flatShading: true
 });
 
-function makePlanet( faceSub ) {
+function makeIco( faceSub ) {
 
-	const rad = 1;
+	const rad = 0.5;
 
-	const geometry = new THREE.IcosahedronBufferGeometry( rad, faceSub )
+	const geometry = new THREE.IcosahedronGeometry( rad, faceSub )
 
-	const mesh = new THREE.Mesh( geometry, planetMaterial );
+	// add adjacent faces information to each face of the geometry
+
+	geometry.faces.forEach( (thisFace) => {
+
+		thisFace.adjFaces = [];
+
+		geometry.faces.forEach( (face) => {
+
+			const arr = [ face.a, face.b, face.c ];
+
+			let counter = 0;
+
+			if ( arr.includes( thisFace.a ) ) counter ++
+			if ( arr.includes( thisFace.b ) ) counter ++
+			if ( arr.includes( thisFace.c ) ) counter ++
+
+			if ( counter === 2 ) thisFace.adjFaces.push( face );
+
+		})
+
+	})
+
+	//
+
+	const mesh = new THREE.Mesh( geometry, icoMaterial );
 
 	return mesh
 
@@ -23,4 +47,4 @@ function makePlanet( faceSub ) {
 
 //
 
-Scene.add( makePlanet( 1 ) );
+Scene.add( makeIco( 1 ) );
