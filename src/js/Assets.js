@@ -100,18 +100,35 @@ function makeIco( faceSub ) {
 
 	const helperMaterial = new THREE.MeshBasicMaterial();
 
-	const helper = new THREE.Mesh( helperGeometry, helperMaterial )
-
-	Scene.add( helper )
-
 	//
 
 	const mesh = new THREE.Mesh( geometry, icoMaterial );
+	
+	const helper = new THREE.Mesh( helperGeometry, helperMaterial );
+	
+	const group = new THREE.Group();
 
-	return mesh
+	group.add( mesh, helper )
+
+	return {
+		mesh,
+		helper,
+		group
+	}
 
 };
 
 //
 
-Scene.add( makeIco( 2 ) );
+const ico0 = makeIco( 0 );
+const ico1 = makeIco( 1 );
+const ico2 = makeIco( 2 );
+
+ico0.group.position.x -= 1.5;
+ico2.group.position.x += 1.5;
+
+Scene.add(
+	ico0.group,
+	ico1.group,
+	ico2.group
+)
