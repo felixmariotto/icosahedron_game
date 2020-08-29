@@ -1,11 +1,40 @@
 
 import './style.css';
 
+import { startMultiplayer } from './gameManager.js';
+
+//
+
+const homeTitle = document.createElement('H1');
+homeTitle.id = 'home-title';
+homeTitle.innerHTML = 'Icosahedron game';
+document.body.append( homeTitle );
+
+const homeScreen = document.createElement('DIV');
+homeScreen.id = 'home-screen';
+document.body.append( homeScreen );
+
+const homeDialogue = document.createElement('DIV');
+homeDialogue.id = 'home-dialogue';
+homeScreen.append( homeDialogue );
+
+const homeInstruction = document.createElement('H2');
+homeInstruction.innerHTML = "Select a game mode :";
+homeDialogue.append( homeInstruction );
+
+const multiplayerButton = document.createElement('DIV');
+multiplayerButton.innerHTML = "multiplayer";
+homeDialogue.append( multiplayerButton );
+multiplayerButton.onclick = () => {
+
+	startMultiplayer();
+
+}
+
 //
 
 const uiConsole = document.createElement('DIV');
 uiConsole.id = 'console';
-document.body.append( uiConsole );
 
 //
 
@@ -25,7 +54,6 @@ function consoleLog( text, type ) {
 
 const turnPanel = document.createElement('DIV');
 turnPanel.id = 'turn-panel';
-document.body.append( turnPanel );
 
 /* 
 
@@ -35,6 +63,15 @@ these are functions aimed at being abstract enough to allow for
 an big UI refactoring later on.
 
 */
+
+function showGameUI() {
+
+	document.body.append( uiConsole );
+	document.body.append( turnPanel );
+
+};
+
+//
 
 function printHelp( text ) {
 
