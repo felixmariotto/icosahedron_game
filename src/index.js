@@ -12,6 +12,8 @@ import Light from './js/Light.js';
 import Assets from './js/Assets.js';
 import Raycaster from './js/Raycaster.js';
 
+import UI from './UI.js';
+
 //
 
 window.addEventListener( 'resize', onWindowResize, false );
