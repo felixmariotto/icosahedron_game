@@ -15,6 +15,27 @@
 	overflow-y: auto;
 }
 
-	.console-line {
-		color: white
+	.console-line.help {
+		color: white;
 	}
+
+	.console-line.warning {
+		color: yellow;
+	}
+
+	.console-line.error {
+		color: red;
+	}
+
+/* TURN PANEL */
+
+#turn-panel {
+	bottom: 0;
+	left: 0;
+	height: 60px;
+	width: 500px;
+	position: fixed;
+	background-color: rgba( 0, 0, 0, 0.5 );
+	border: solid white 1px;
+	box-sizing: border-box;
+}

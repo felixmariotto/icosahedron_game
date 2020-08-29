@@ -9,12 +9,10 @@ document.body.append( uiConsole );
 
 //
 
-consoleLog('Welcome to isocahedron game');
-
-function consoleLog( text ) {
+function consoleLog( text, type ) {
 
 	const newLine = document.createElement('DIV');
-	newLine.classList.add('console-line');
+	newLine.classList.add( 'console-line', type );
 	uiConsole.append( newLine );
 
 	newLine.innerHTML = text;
@@ -22,3 +20,44 @@ function consoleLog( text ) {
 	uiConsole.scrollTop = uiConsole.scrollHeight;
 
 };
+
+//
+
+const turnPanel = document.createElement('DIV');
+turnPanel.id = 'turn-panel';
+document.body.append( turnPanel );
+
+/* 
+
+API
+
+these are functions aimed at being abstract enough to allow for
+an big UI refactoring later on.
+
+*/
+
+function printHelp( text ) {
+
+	consoleLog( text, 'help' );
+
+}
+
+//
+
+function printWarning( text ) {
+
+	consoleLog( text, 'warning' );
+
+}
+
+//
+
+function printError( text ) {
+
+	consoleLog( text, 'error' );
+
+}
+
+printHelp( 'this is help comment' );
+printWarning( 'your turn will finish in 20 seconds');
+printError( "you can't do this" );
