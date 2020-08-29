@@ -6,13 +6,15 @@ import Scene from './core/Scene.js';
 
 //
 
+const BASE_ICO_RAD = 0.5;
+
 const icoMaterial = new THREE.MeshNormalMaterial({
 	flatShading: true
 });
 
 function makeIco( faceSub ) {
 
-	const rad = 0.5;
+	const rad = BASE_ICO_RAD * ( faceSub + 1 );
 
 	const geometry = new THREE.IcosahedronGeometry( rad, faceSub )
 
@@ -124,8 +126,8 @@ const ico0 = makeIco( 0 );
 const ico1 = makeIco( 1 );
 const ico2 = makeIco( 2 );
 
-ico0.group.position.x -= 1.5;
-ico2.group.position.x += 1.5;
+ico0.group.position.x -= 2;
+ico2.group.position.x += 3;
 
 Scene.add(
 	ico0.group,
