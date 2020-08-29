@@ -10,6 +10,7 @@ import Loop from './js/core/Loop.js';
 
 import Light from './js/Light.js';
 import Assets from './js/Assets.js';
+import Raycaster from './js/Raycaster.js';
 
 //
 
