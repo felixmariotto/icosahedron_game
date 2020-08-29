@@ -5,29 +5,53 @@ import { startMultiplayer } from './gameManager.js';
 
 //
 
-const homeTitle = document.createElement('H1');
-homeTitle.id = 'home-title';
-homeTitle.innerHTML = 'Icosahedron game';
-document.body.append( homeTitle );
+let deleteHomeScreen, showOpponentWait;
 
-const homeScreen = document.createElement('DIV');
-homeScreen.id = 'home-screen';
-document.body.append( homeScreen );
+createHomeScreen();
 
-const homeDialogue = document.createElement('DIV');
-homeDialogue.id = 'home-dialogue';
-homeScreen.append( homeDialogue );
+function createHomeScreen() {
 
-const homeInstruction = document.createElement('H2');
-homeInstruction.innerHTML = "Select a game mode :";
-homeDialogue.append( homeInstruction );
+	const title = document.createElement('H1');
+	title.id = 'home-title';
+	title.innerHTML = 'Icosahedron game';
+	document.body.append( title );
 
-const multiplayerButton = document.createElement('DIV');
-multiplayerButton.innerHTML = "multiplayer";
-homeDialogue.append( multiplayerButton );
-multiplayerButton.onclick = () => {
+	const container = document.createElement('DIV');
+	container.id = 'home-screen';
+	document.body.append( container );
 
-	startMultiplayer();
+	const dialogueBox = document.createElement('DIV');
+	dialogueBox.id = 'home-dialogue';
+	container.append( dialogueBox );
+
+	const instruction = document.createElement('H2');
+	instruction.innerHTML = "Select a game mode :";
+	dialogueBox.append( instruction );
+
+	const multiplayerButton = document.createElement('DIV');
+	multiplayerButton.innerHTML = "multiplayer";
+	dialogueBox.append( multiplayerButton );
+	multiplayerButton.onclick = () => {
+
+		showOpponentWait();
+
+		startMultiplayer();
+
+	}
+
+	deleteHomeScreen = function () {
+
+		document.body.removeChild( title );
+		document.body.removeChild( container );
+
+	}
+
+	showOpponentWait = function () {
+
+		instruction.innerHTML = "Looking for an opponent, please wait.";
+		dialogueBox.removeChild( multiplayerButton );
+
+	}
 
 }
 
