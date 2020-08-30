@@ -26,13 +26,39 @@ const app = express()
 
 const io = socketIO( app );
 
+let waitingOpponent;
+
+function createGameID() {
+	return ( Math.random() * 10000000 ).toFixed(0)
+}
+
 io.on( 'connection', (client)=> {
 
 	console.log( `User ${ client.id } connected.` );
 
-	client.on( 'request-opponent', (message, respFn) => {
+	client.on( 'request-opponent', (message) => {
 
-		respFn();
+		if ( waitingOpponent ) {
+
+			const gameID = createGameID();
+
+			// join the room with the requested game name
+			
+			io.sockets.sockets[ client.id ].join( gameID );
+			io.sockets.sockets[ client.id ].gameID = gameID;
+
+			io.sockets.sockets[ waitingOpponent ].join( gameID );
+			io.sockets.sockets[ waitingOpponent ].gameID = gameID;
+
+			// broadcast new game to both opponents
+
+			io.to( gameID ).emit( 'new-multiplayer-game', { gameID } );
+
+		} else {
+
+			waitingOpponent = client.id;
+
+		}
 
 	})
 
