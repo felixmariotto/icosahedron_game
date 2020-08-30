@@ -16,8 +16,6 @@ socket.on( 'new-multiplayer-game', (message) => {
 
 	startMultiplayer();
 
-	console.log( message );
-
 })
 
 //
