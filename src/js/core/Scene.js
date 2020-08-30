@@ -26,7 +26,8 @@ export default {
 	threeScene: scene,
 	updateBackground,
 	add,
-	addToGroup
+	addToGroup,
+	showGroup
 }
 
 //
@@ -65,3 +66,17 @@ function addToGroup( id ) {
 	groups[ id ].add( ...args )
 
 };
+
+//
+
+function showGroup( id ) {
+
+	groups.forEach( (group) => {
+
+		group.visible = false;
+
+	})
+
+	groups[ id ].visible = true;
+
+}

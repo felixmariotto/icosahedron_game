@@ -2,6 +2,7 @@
 import './style.css';
 
 import { requestOpponent } from './SocketIO.js';
+import Scene from './js/core/Scene.js';
 
 //
 
@@ -100,7 +101,7 @@ for ( let i=0 ; i<5 ; i++ ) {
 	planetPanelFlex.append( button );
 
 	button.onclick = () => {
-		console.log('coucou button ' + i)
+		Scene.showGroup( i )
 	}
 
 }
