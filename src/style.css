@@ -77,3 +77,43 @@
 	border: solid white 1px;
 	box-sizing: border-box;
 }
+
+/* PLANET PANEL */
+
+#planet-panel {
+	bottom: 0;
+	right: 0;
+	height: 90px;
+	width: 250px;
+	position: fixed;
+	background-color: rgba( 0, 0, 0, 0.5 );
+	border: solid white 1px;
+	box-sizing: border-box;
+	text-align: center;
+	color: white;
+}
+
+	#planet-panel * {
+		margin: 10px 0;
+	}
+
+	#planet-panel-flex {
+		display: flex;
+		justify-content: center;
+	}
+
+		#planet-panel-flex div {
+			background-color: rgba( 0, 0, 0, 0.5 );
+			border: solid white 1px;
+			box-sizing: border-box;
+			height: 30px;
+			width: 30px;
+			margin: 0 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+			#planet-panel-flex div:hover {
+				cursor: pointer;
+			}

@@ -3,10 +3,10 @@ import CLIENT from "socket.io-client";
 import Ico from './js/Ico.js';
 import { startMultiplayer } from './gameManager.js';
 
-const socket = CLIENT.connect();
+// const socket = CLIENT.connect();
 
 // Good to test with webpack-dev-server :
-// const socket = CLIENT.connect("https://vrgate-stage.herokuapp.com/");
+const socket = CLIENT.connect("https://ico-game.herokuapp.com/");
 
 // RECEPTION
 

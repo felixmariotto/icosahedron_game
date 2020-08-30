@@ -74,10 +74,36 @@ function consoleLog( text, type ) {
 
 };
 
-//
+// TURN PANEL
 
 const turnPanel = document.createElement('DIV');
 turnPanel.id = 'turn-panel';
+
+// PLANETS PANEL
+
+const planetPanel = document.createElement('DIV');
+planetPanel.id = 'planet-panel';
+
+const planetPanelTitle = document.createElement('H2');
+planetPanelTitle.innerHTML = 'planets :';
+planetPanel.append( planetPanelTitle );
+
+const planetPanelFlex = document.createElement('DIV');
+planetPanelFlex.id = 'planet-panel-flex';
+planetPanel.append( planetPanelFlex );
+
+for ( let i=0 ; i<5 ; i++ ) {
+
+	const button = document.createElement('DIV');
+	button.innerHTML = i;
+	button.classList.add('planet-button');
+	planetPanelFlex.append( button );
+
+	button.onclick = () => {
+		console.log('coucou button ' + i)
+	}
+
+}
 
 /* 
 
@@ -92,6 +118,7 @@ function showGameUI() {
 
 	document.body.append( uiConsole );
 	document.body.append( turnPanel );
+	document.body.append( planetPanel );
 
 };
 
