@@ -25,6 +25,7 @@ const app = express()
 /* SOCKET.IO */
 
 const io = socketIO( app );
+const games = require('./modules/Games.js')(io);
 
 let waitingOpponent;
 
@@ -43,16 +44,20 @@ io.on( 'connection', (client)=> {
 			const gameID = createGameID();
 
 			// join the room with the requested game name
-			
+
 			io.sockets.sockets[ client.id ].join( gameID );
 			io.sockets.sockets[ client.id ].gameID = gameID;
 
 			io.sockets.sockets[ waitingOpponent ].join( gameID );
 			io.sockets.sockets[ waitingOpponent ].gameID = gameID;
 
-			// broadcast new game to both opponents
+			// make game engine create a new game
 
-			io.to( gameID ).emit( 'new-multiplayer-game', { gameID } );
+			games.createNewGame( gameID, waitingOpponent, client.id );
+
+			//
+
+			waitingOpponent = undefined;
 
 		} else {
 
