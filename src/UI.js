@@ -1,7 +1,7 @@
 
 import './style.css';
 
-import { startMultiplayer } from './gameManager.js';
+import { requestOpponent } from './SocketIO.js';
 
 //
 
@@ -35,7 +35,7 @@ function createHomeScreen() {
 
 		showOpponentWait();
 
-		startMultiplayer();
+		requestOpponent();
 
 	}
 
@@ -122,3 +122,16 @@ function printError( text ) {
 printHelp( 'this is help comment' );
 printWarning( 'your turn will finish in 20 seconds');
 printError( "you can't do this" );
+
+//
+
+function hideHomeScreen() {
+
+	deleteHomeScreen();
+	showGameUI();
+
+};
+
+//
+
+export { hideHomeScreen }

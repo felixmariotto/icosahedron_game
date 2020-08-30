@@ -1,11 +1,11 @@
 
-import { requestOpponent } from './SocketIO.js';
+import { hideHomeScreen } from './UI.js';
 
 //
 
 function startMultiplayer() {
 
-	requestOpponent();
+	hideHomeScreen();
 
 }
 

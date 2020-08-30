@@ -1,5 +1,7 @@
 
 import CLIENT from "socket.io-client";
+import Ico from './js/Ico.js';
+import { startMultiplayer } from './gameManager.js';
 
 const socket = CLIENT.connect();
 
@@ -9,6 +11,10 @@ const socket = CLIENT.connect();
 // RECEPTION
 
 socket.on( 'new-multiplayer-game', (message) => {
+
+	Ico.createBoards( message.boardSizes );
+
+	startMultiplayer();
 
 	console.log( message );
 
